@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -9,16 +10,16 @@ app.use(express.json())
 app.use(cors())
 
 
-mongoose.connect("mongodb://localhost:127.0.0.1:27017/uzb" ,
+mongoose.connect(process.env.DATABASE ,
     {
         useNewUrlParser:true ,
-     useUnifiedTopology:true}
+        useUnifiedTopology:true}
 )
 .then(() => {
     console.log('Bazaga ulandi')
 })
 .catch((err)=> {
-    console.log('Bazaga ulanishda hato')
+    console.log(err)
 })
 
 app.use(bodyParser.json());
